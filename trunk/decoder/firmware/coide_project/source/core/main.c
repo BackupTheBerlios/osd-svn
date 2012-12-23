@@ -24,7 +24,7 @@
  */
 int main (void)
 {
-	debug_init;
+	debug_init (FALSE);
 
     while (1)
     {
