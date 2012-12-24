@@ -26,7 +26,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
         </MemoryAreas>
-        <LocateLinkFile path="../../../../../../../../../coocox/coide/configuration/programdata/osd/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="../../../../../../programme/coocox/coide/configuration/programdata/osd/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -144,8 +144,8 @@
     <File name="cmsis_lib/Include/Driver/DrvI2C.h" path="cmsis_lib/Include/Driver/DrvI2C.h" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
     <File name="cmsis_lib/Include/Driver/DrvPWM.h" path="cmsis_lib/Include/Driver/DrvPWM.h" type="1"/>
-    <File name="cmsis_lib/Include/Driver/DrvSYS.h" path="cmsis_lib/Include/Driver/DrvSYS.h" type="1"/>
     <File name="cmsis_lib/Include/System/ModuleID.h" path="cmsis_lib/Include/System/ModuleID.h" type="1"/>
+    <File name="cmsis_lib/Include/Driver/DrvSYS.h" path="cmsis_lib/Include/Driver/DrvSYS.h" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvUART.c" path="cmsis_lib/Source/Driver/DrvUART.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvADC.h" path="cmsis_lib/Include/Driver/DrvADC.h" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
@@ -158,14 +158,14 @@
     <File name="core/main.c" path="source/core/main.c" type="1"/>
     <File name="cmsis_lib/Source" path="" type="2"/>
     <File name="core/globals.h" path="source/core/globals.h" type="1"/>
-    <File name="protocols" path="" type="2"/>
     <File name="cmsis_lib/Source/Driver/DrvI2C.c" path="cmsis_lib/Source/Driver/DrvI2C.c" type="1"/>
+    <File name="protocols" path="" type="2"/>
     <File name="core" path="" type="2"/>
     <File name="core/system.h" path="source/core/system.h" type="1"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
-    <File name="cmsis_lib/Include/Driver/DrvFMC.h" path="cmsis_lib/Include/Driver/DrvFMC.h" type="1"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
+    <File name="cmsis_lib/Include/Driver/DrvFMC.h" path="cmsis_lib/Include/Driver/DrvFMC.h" type="1"/>
     <File name="cmsis_lib/Source/Driver" path="" type="2"/>
     <File name="cmsis_lib/Source/Driver/DrvFMC.c" path="cmsis_lib/Source/Driver/DrvFMC.c" type="1"/>
     <File name="cmsis_lib/Include/Driver" path="" type="2"/>
