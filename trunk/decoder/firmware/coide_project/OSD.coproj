@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project version="2G" name="OSD">
+<Project version="2G">
   <Target name="OSD_Flash" isCurrent="1">
     <Device manufacturerId="8" manufacturerName="Nuvoton" chipId="225" chipName="M0516LBN" boardId="" boardName=""/>
     <BuildOption>
@@ -26,7 +26,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
         </MemoryAreas>
-        <LocateLinkFile path="../../../../../../programme/coocox/coide/configuration/programdata/osd/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="C:\CooCox\CoIDE\workspace\OSD_Flash\arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -52,7 +52,7 @@
       <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="0"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="0"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.autoDownload" value="1"/>
@@ -60,7 +60,9 @@
       <Option name="org.coocox.codebugger.gdbjtag.core.downloadFuction" value="Erase Effected"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.defaultAlgorithm" value="../../../../../coocox/coide/flash/m051_64.elf"/>
     </DebugOption>
-    <ExcludeFile/>
+    <ExcludeFile>
+      <File name="system_M051Series.c" path="cmsis_boot/system_M051Series.c" type="1"/>
+    </ExcludeFile>
   </Target>
   <Target name="OSD_RAM" isCurrent="0">
     <Device manufacturerId="8" manufacturerName="Nuvoton" chipId="225" chipName="M0516LBN" boardId="" boardName=""/>

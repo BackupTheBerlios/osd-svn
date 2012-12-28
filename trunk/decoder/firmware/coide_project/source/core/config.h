@@ -16,4 +16,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// frequency in MHz for processor clock
+#define CPUFREQ	50
+
+
+
+
 #endif
