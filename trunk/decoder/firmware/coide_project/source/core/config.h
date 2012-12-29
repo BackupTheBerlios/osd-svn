@@ -19,7 +19,7 @@
 // frequency in MHz for processor clock
 #define CPUFREQ	50
 
-
-
+// mask for function outputs used for servo, pulse cycle set to 20ms
+#define SERVOOUTPUTS BIT7
 
 #endif

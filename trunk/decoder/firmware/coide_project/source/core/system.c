@@ -3,7 +3,7 @@
  *
  * @brief Zugriff auf die System-Ressourcen des Prozessors.
  *
- * @note HW-abhängiges Modul für: Prozessor M0516BNZ
+ * @note HW-abhängiges Modul für: Prozessor M0516ZBN
  *
  * @copyright Das Copyright liegt bei den Autoren. Das Programm unterliegt den
  *            Bedingungen der GNU General Public License 3 (GPL3).
@@ -21,6 +21,7 @@ void SystemInit (void)
 	PORT1->DOUT = 0;
 	PORT2->DOUT = 0;
 	PORT3->DOUT = BIT5 + BIT4 + BIT1;	// inputs and TXD remain high
+	PORT3->DMASK = BIT7;				// reserved for debugging
 
 	// open pins are set to QBM to keep them fixed
 	// PORT0            7:OUT   6:QBM   5:OUT   4:OUT  3:QBM  2:QBM  1:OUT  0:OUT

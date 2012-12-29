@@ -62,6 +62,7 @@
     </DebugOption>
     <ExcludeFile>
       <File name="system_M051Series.c" path="cmsis_boot/system_M051Series.c" type="1"/>
+      <File name="DrvTIMER.c" path="cmsis_lib/Source/Driver/DrvTIMER.c" type="1"/>
     </ExcludeFile>
   </Target>
   <Target name="OSD_RAM" isCurrent="0">
@@ -140,53 +141,54 @@
     <Component id="375" name="TIMER" path="" type="2"/>
   </Components>
   <Files>
+    <File name="cmsis_boot" path="" type="2"/>
+    <File name="cmsis_lib/Include/Driver/DrvPWM.h" path="cmsis_lib/Include/Driver/DrvPWM.h" type="1"/>
+    <File name="cmsis_lib/Include/Driver/DrvADC.h" path="cmsis_lib/Include/Driver/DrvADC.h" type="1"/>
+    <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
+    <File name="functions/functhw.c" path="source/functions/functhw.c" type="1"/>
+    <File name="cmsis_boot/startup" path="" type="2"/>
+    <File name="cmsis_lib/Include/System" path="" type="2"/>
+    <File name="cmsis_core" path="" type="2"/>
+    <File name="core/debug.c" path="source/core/debug.c" type="1"/>
+    <File name="cmsis_lib/Source" path="" type="2"/>
+    <File name="core/globals.h" path="source/core/globals.h" type="1"/>
+    <File name="core" path="" type="2"/>
+    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
+    <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
+    <File name="cmsis_lib/Source/Driver" path="" type="2"/>
+    <File name="cmsis_lib/Source/Driver/DrvFMC.c" path="cmsis_lib/Source/Driver/DrvFMC.c" type="1"/>
+    <File name="functions" path="" type="2"/>
+    <File name="cmsis_lib/Source/Driver/DrvSYS.c" path="cmsis_lib/Source/Driver/DrvSYS.c" type="1"/>
+    <File name="cmsis_lib/Include/Driver/DrvGPIO.h" path="cmsis_lib/Include/Driver/DrvGPIO.h" type="1"/>
+    <File name="cmsis_lib/Source/Driver/DrvTIMER.c" path="cmsis_lib/Source/Driver/DrvTIMER.c" type="1"/>
+    <File name="cmsis_core/core_cm0.c" path="cmsis_core/core_cm0.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvSPI.h" path="cmsis_lib/Include/Driver/DrvSPI.h" type="1"/>
     <File name="cmsis_lib/Include" path="" type="2"/>
     <File name="cmsis_lib/Source/Driver/DrvADC.c" path="cmsis_lib/Source/Driver/DrvADC.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvI2C.h" path="cmsis_lib/Include/Driver/DrvI2C.h" type="1"/>
-    <File name="cmsis_boot" path="" type="2"/>
-    <File name="cmsis_lib/Include/Driver/DrvPWM.h" path="cmsis_lib/Include/Driver/DrvPWM.h" type="1"/>
     <File name="cmsis_lib/Include/System/ModuleID.h" path="cmsis_lib/Include/System/ModuleID.h" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvSYS.h" path="cmsis_lib/Include/Driver/DrvSYS.h" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvUART.c" path="cmsis_lib/Source/Driver/DrvUART.c" type="1"/>
-    <File name="cmsis_lib/Include/Driver/DrvADC.h" path="cmsis_lib/Include/Driver/DrvADC.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
-    <File name="cmsis_boot/startup" path="" type="2"/>
-    <File name="cmsis_lib/Include/System" path="" type="2"/>
     <File name="cmsis_boot/M051Series.h" path="cmsis_boot/M051Series.h" type="1"/>
-    <File name="cmsis_core" path="" type="2"/>
     <File name="cmsis_boot/system_M051Series.h" path="cmsis_boot/system_M051Series.h" type="1"/>
-    <File name="core/debug.c" path="source/core/debug.c" type="1"/>
     <File name="core/main.c" path="source/core/main.c" type="1"/>
-    <File name="cmsis_lib/Source" path="" type="2"/>
-    <File name="core/globals.h" path="source/core/globals.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvI2C.c" path="cmsis_lib/Source/Driver/DrvI2C.c" type="1"/>
     <File name="protocols" path="" type="2"/>
-    <File name="core" path="" type="2"/>
+    <File name="cmsis_lib/Source/Driver/DrvI2C.c" path="cmsis_lib/Source/Driver/DrvI2C.c" type="1"/>
     <File name="core/system.h" path="source/core/system.h" type="1"/>
-    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="cmsis_lib" path="" type="2"/>
-    <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvFMC.h" path="cmsis_lib/Include/Driver/DrvFMC.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver" path="" type="2"/>
-    <File name="cmsis_lib/Source/Driver/DrvFMC.c" path="cmsis_lib/Source/Driver/DrvFMC.c" type="1"/>
     <File name="cmsis_lib/Include/Driver" path="" type="2"/>
     <File name="cmsis_lib/Include/Driver/DrvTimer.h" path="cmsis_lib/Include/Driver/DrvTimer.h" type="1"/>
     <File name="syscalls" path="" type="2"/>
-    <File name="functions" path="" type="2"/>
-    <File name="cmsis_lib/Source/Driver/DrvSYS.c" path="cmsis_lib/Source/Driver/DrvSYS.c" type="1"/>
     <File name="cmsis_lib/Include/System/SysInfra.h" path="cmsis_lib/Include/System/SysInfra.h" type="1"/>
     <File name="core/config.h" path="source/core/config.h" type="1"/>
     <File name="core/system.c" path="source/core/system.c" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvSPI.c" path="cmsis_lib/Source/Driver/DrvSPI.c" type="1"/>
-    <File name="cmsis_lib/Include/Driver/DrvGPIO.h" path="cmsis_lib/Include/Driver/DrvGPIO.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvTIMER.c" path="cmsis_lib/Source/Driver/DrvTIMER.c" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvGPIO.c" path="cmsis_lib/Source/Driver/DrvGPIO.c" type="1"/>
     <File name="cmsis_boot/startup/startup_M051Series.c" path="cmsis_boot/startup/startup_M051Series.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvUART.h" path="cmsis_lib/Include/Driver/DrvUART.h" type="1"/>
     <File name="core/types.h" path="source/core/types.h" type="1"/>
     <File name="cmsis_boot/system_M051Series.c" path="cmsis_boot/system_M051Series.c" type="1"/>
     <File name="core/debug.h" path="source/core/debug.h" type="1"/>
-    <File name="cmsis_core/core_cm0.c" path="cmsis_core/core_cm0.c" type="1"/>
   </Files>
 </Project>
