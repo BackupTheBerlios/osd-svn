@@ -127,13 +127,13 @@ typedef enum IRQn
 //
 //! Cortex-M0 processor and core peripherals  
 //
-#include "core_cm0.h"               
+#include "core_cm0.h"
 
 //
 //! M051Series System 
 //
-#include "system_M051Series.h"   
-#include "System\SysInfra.h"    
+#include "system_M051Series.h"
+#include "System\SysInfra.h"
 
 
 #if defined ( __CC_ARM   )
@@ -2732,7 +2732,9 @@ typedef struct
         } BODCR;
     };
 
-    uint32_t RESERVE1[2];
+    __IO uint32_t TEMPCR;
+
+    uint32_t RESERVE1;
     
     union 
     {

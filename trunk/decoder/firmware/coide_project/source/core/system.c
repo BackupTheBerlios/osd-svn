@@ -12,6 +12,7 @@
 
 #include "M051series.h"
 #include "config.h"
+#include "system.h"
 
 
 void SystemInit (void)
@@ -55,8 +56,9 @@ void SystemInit (void)
 	LOCKREG();
 
 	/* enable required clock lines and select 12M clock */
-	outpw(&SYSCLK->APBCLK, 0xFFFFFFFF);
-	outpw(&SYSCLK->CLKSEL1, 0);
+	SYSCLK->u32APBCLK = 0xFFFFFFFF;
+	SYSCLK->u32CLKSEL1 = 0;
+	SYSCLK->u32CLKSEL2 = 0;
 
 	/* Select timer0 Operation mode as period mode */
 	TIMER0->TCSR.MODE = 1;
@@ -78,6 +80,17 @@ void SystemInit (void)
 	outpw(&SYS->P2_MFP, 		(0x100<<2) + (0x100<<6));		// PWM
 	outpw(&SYS->P3_MFP, 0xFF0000 + (0x001<<1) + (0x001<<2));	// TXD and INT0, Schmitt Trigger
 //	outpw(&SYS->P4_MFP, BIT7 + BIT6);	// Emulator seem automatically be detected ?
+
+	/* int HW for feedback */
+	InitFeedback();
+
+	/* select usable ADC input channels, chan 7 for temperature */
+	SYS->TEMPCR = 1;					// enable temperature sensor
+	ADC->u32ADCHER = 0x200 + BIT7 + BIT5 + BIT4 + BIT0;
+
+	/* set ADC mode and start it */
+	ADC->u32ADCR = 0xD;
+	ADC->ADCR.ADST = 1;
 
 	// INT0 edge triggered rising and falling for rail signal detection
 	PORT3->IMD = 0;

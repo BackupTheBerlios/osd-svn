@@ -16,4 +16,12 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+
+// prototypes for functions
+void setPWMduty (uint32_t u32channel, uint8_t u8duty);
+
+// prototypes for feedback
+void InitFeedback (void);
+void SendBidiFeedback (uint32_t u32length, uint8_t * pu8buffer);
+
 #endif

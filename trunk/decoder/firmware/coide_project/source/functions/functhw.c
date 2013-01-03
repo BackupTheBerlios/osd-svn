@@ -12,13 +12,20 @@
 
 #include "M051series.h"
 #include "config.h"
+#include "system.h"
+
+// definitions
+typedef union {
+	uint32_t	w;
+	uint8_t		b[4];
+}	u_wb4_typ;
 
 // trigger for slow timed actions
 volatile char trigger10ms;
 
 // info storage for function outputs
-uint32_t functionframe[255];
-uint32_t functionstatic, functionmask;
+uint32_t u32functionframe[255];
+uint32_t u32functionstatic, u32functionmask;
 
 // periodically called, handles all outputs used as GPIO
 // simulates PWM by fast switching
@@ -26,29 +33,29 @@ uint32_t functionstatic, functionmask;
 
 void TMR0_IRQHandler(void)
 {
-    static uint32_t fbufptr, fbufcntr;
-    uint32_t functionact;
+    static uint32_t u32fbufptr, u32fbufcntr;
+    u_wb4_typ functionact;
 
 			outpw(PORT_BIT_DOUT+0x7C, 1);					// time measurement P3.7 ***********************
-    TIMER0->TISR.TIF = 1;		// clear request
+    TIMER0->u32TISR = 1;			// clear request
 
     // set all port outputs
-    functionact = (functionstatic | functionframe[fbufptr]) & ~functionmask;
-	PORT0->DOUT = functionact & 0xFF;
-	PORT1->DOUT = (functionact >> 8) & 0xFF;
-	PORT2->DOUT = (functionact >> 16) & 0xFF;
-	PORT3->DOUT = (functionact >> 24) & 0xFF;
+    functionact.w = (u32functionstatic | u32functionframe[u32fbufptr]) & ~u32functionmask;
+	PORT0->DOUT = functionact.b[0];
+	PORT1->DOUT = functionact.b[1];
+	PORT2->DOUT = functionact.b[2];
+	PORT3->DOUT = functionact.b[3];
 
-	if (++fbufptr > 254) {			// counts for SW-PWM
-		fbufptr = 0;
-		if (++fbufcntr >= 10) {		// counts for servo frame, 10 * 2ms
-			fbufcntr = 0;
-			functionmask = 0;
-			trigger10ms = 1;		// trigger timed tasks
+	if (++u32fbufptr > 254) {			// counts for SW-PWM
+		u32fbufptr = 0;
+		if (++u32fbufcntr >= 10) {		// counts for servo frame, 10 * 2ms
+			u32fbufcntr = 0;
+			u32functionmask = 0;
+			trigger10ms = 1;			// trigger timed tasks
 		}
 		else {
-			functionmask = SERVOOUTPUTS;
-			if (fbufcntr == 5) trigger10ms = 1;
+			u32functionmask = SERVOOUTPUTS;
+			if (u32fbufcntr == 5) trigger10ms = 1;
 		}
 	}
 			outpw(PORT_BIT_DOUT+0x7C, 0);					// time measurement P3.7 ***********************
@@ -57,11 +64,11 @@ void TMR0_IRQHandler(void)
 // set duty cycle of PWM
 // channel as bitmask, duty in the range of 0 to 255
 
-void setPWMduty (uint32_t channel, uint8_t duty)
+void setPWMduty (uint32_t u32channel, uint8_t u8duty)
 {
-	uint32_t i;
-	for (i=0; i<255; i++) {
-		if (i < duty) 	functionframe[i] |= channel;
-		else			functionframe[i] &= ~channel;
+	uint32_t u32i;
+	for (u32i = 0; u32i < 255; u32i++) {
+		if (u32i < u8duty) 	u32functionframe[u32i] |= u32channel;
+		else				u32functionframe[u32i] &= ~u32channel;
 	}
 }
