@@ -36,8 +36,8 @@ void TMR0_IRQHandler(void)
     static uint32_t u32fbufptr, u32fbufcntr;
     u_wb4_typ functionact;
 
-			outpw(PORT_BIT_DOUT+0x7C, 1);					// time measurement P3.7 ***********************
-    TIMER0->u32TISR = 1;			// clear request
+			outpw(P37_DOUT, 1);			// time measurement P3.7 ***********************
+    TIMER0->u32TISR = 1;			    // clear request
 
     // set all port outputs
     functionact.w = (u32functionstatic | u32functionframe[u32fbufptr]) & ~u32functionmask;
@@ -58,7 +58,7 @@ void TMR0_IRQHandler(void)
 			if (u32fbufcntr == 5) trigger10ms = 1;
 		}
 	}
-			outpw(PORT_BIT_DOUT+0x7C, 0);					// time measurement P3.7 ***********************
+			outpw(P37_DOUT, 0);			// time measurement P3.7 ***********************
 }
 
 // set duty cycle of PWM
@@ -68,7 +68,7 @@ void setPWMduty (uint32_t u32channel, uint8_t u8duty)
 {
 	uint32_t u32i;
 	for (u32i = 0; u32i < 255; u32i++) {
-		if (u32i < u8duty) 	u32functionframe[u32i] |= u32channel;
+		if (u32i < u8duty) 	u32functionframe[u32i] |=  u32channel;
 		else				u32functionframe[u32i] &= ~u32channel;
 	}
 }
