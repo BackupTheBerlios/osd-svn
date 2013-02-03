@@ -13,13 +13,17 @@
 #include "config.h"
 #include "protocol.h"
 
+#ifdef SIMULATION
+	#include <stdio.h>
+#endif
+
 
 uint32_t u32olddur, u32countpreamp;
 uint8_t  u8protstate;
 
 void handlechange(uint32_t u32duration)
 {
-	if (u32duration < 80)	{
+	if (u32duration < 75)	{
 		if (u32duration < 40)	{		// 0 to 40us
 			switch (u8protstate) {
 				case E_idle:	// short pulse after long idle assumed to be MM
@@ -34,9 +38,12 @@ void handlechange(uint32_t u32duration)
 								break;
 				default:		// unexpected
 								u8protstate = E_idle;
+#ifdef SIMULATION
+								printf("<E_25>");
+#endif
 			}
 		}
-		else {							// 40 to 80us
+		else {							// 40 to 75us
 			switch (u8protstate) {
 				case E_idle:	// count changes to detect preamble
 								u32countpreamp++;
@@ -50,13 +57,20 @@ void handlechange(uint32_t u32duration)
 								break;
 				default:		// unexpected
 								u8protstate = E_idle;
+#ifdef SIMULATION
+								printf("<E_50>");
+#endif
 			}
 		}
 	}
 	else {
-		switch (u8protstate) {			// longer than 80us
+		switch (u8protstate) {			// longer than 75us
 			case E_idle:	// if preamble detected assume DCC
-							if (u32countpreamp > 20) u8protstate = handleDCC(E_100 + E_New);
+							if (u32countpreamp >= 20) {
+								if (u32countpreamp >= 40) 
+										u8protstate = handleDCC(E_100 + E_LongPrea + E_New);
+								else	u8protstate = handleDCC(E_100 + E_New);
+							}
 							else {
 								if (u32duration < 130) {
 									// MM with double speed has been started
@@ -85,6 +99,9 @@ void handlechange(uint32_t u32duration)
 							break;
 			default:		// unexpected
 							u8protstate = E_idle;
+#ifdef SIMULATION
+							printf("<LONG>");
+#endif
 		}
 		u32countpreamp = 0;
 	}
