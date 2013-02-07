@@ -13,8 +13,8 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
-#define uint8_t unsigned char
-#define uint32_t unsigned int
+//#define uint8_t unsigned char
+//#define uint32_t unsigned int
 
 // enumerations
 enum E_ProtState { E_idle, E_MM_rec, E_DCC_rec, E_DCC_ans, E_OXP_rec, E_OXP_ans };

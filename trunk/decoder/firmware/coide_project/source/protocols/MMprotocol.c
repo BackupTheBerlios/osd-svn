@@ -11,8 +11,8 @@
  *****************************************************************************/
 
 #include "config.h"
-#include "protocol.h"
 #include "globals.h"
+#include "protocol.h"
 
 #ifdef SIMULATION
 	#include <stdio.h>
@@ -115,5 +115,7 @@ void executeMM (void)
 	// check if programming => do programming
 	// check frequency and address
 	// handle first and following assigned MM addresses
+	if (mmaddr == a8CVvalues[E_CV_Short_Addr])
+		sCommand.u8speed = u_mmpacketold.u8data;
 #endif
 }

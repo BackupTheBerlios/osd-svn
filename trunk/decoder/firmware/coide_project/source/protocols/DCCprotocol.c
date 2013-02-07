@@ -11,8 +11,8 @@
  *****************************************************************************/
 
 #include "config.h"
-#include "protocol.h"
 #include "globals.h"
+#include "protocol.h"
 
 #ifdef SIMULATION
 	#include <stdio.h>

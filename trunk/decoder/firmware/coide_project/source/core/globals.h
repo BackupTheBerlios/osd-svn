@@ -14,8 +14,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#define FALSE 0
-#define TRUE 1
+#include "types.h"
+#include "cvdef.h"
 
 #ifdef MAIN
 #define EXTERN
@@ -23,6 +23,15 @@
 #define EXTERN extern
 #endif
 
+// Data which should be flash-backuped
+typedef struct {	uint32_t	u32functions;
+					uint8_t 	u8speed, u8direction; } S_COMMAND;
+
+EXTERN uint8_t a8CVvalues[512];
+EXTERN S_COMMAND sCommand;
+
+
+// other global data
 
 
 #endif
