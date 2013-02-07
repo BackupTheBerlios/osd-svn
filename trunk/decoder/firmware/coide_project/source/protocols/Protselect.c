@@ -94,7 +94,8 @@ void handlechange(uint32_t u32duration)
 							u8protstate = handleOXP(E_100);
 							break;
 			case E_OXP_ans:	// feedback interval for OXP
-							if (u32duration < 600) u8protstate = handleOXP(E_400);
+							if (u32duration < 200) u8protstate = handleOXP(E_100);
+							else if (u32duration < 600) u8protstate = handleOXP(E_400);
 							else u8protstate = handleOXP(E_900);
 							break;
 			default:		// unexpected

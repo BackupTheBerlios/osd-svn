@@ -19,14 +19,11 @@
 #endif
 
 // storage for OXP packets
-/*union {	uint32_t	u32data;
-		struct { uint8_t u8addrbits, u8fubits, u8data, u8xdata; } ;
-		}	u_mmpacketnew, u_mmpacketold;
-	*/
+uint32_t a32oxpnewdaten[3], a32oxprecdaten[3];
 
 uint32_t u32oxpcrc;
-uint8_t u8oxpbitstate, u8oxpchanges, u8oxpdataavail, u8oxprecbit, u8oxpnrones, u8oxpnrbits;
-uint8_t u8oxpexec;
+uint8_t u8oxpbitstate, u8oxpchanges, u8oxprecbit, u8oxpnrones, u8oxpnrbits;
+uint8_t u8oxpexec, u8oxpanswering ;
 
 // entry from protocol selector
 uint8_t handleOXP(uint8_t u8pulselen)
@@ -35,14 +32,12 @@ uint8_t handleOXP(uint8_t u8pulselen)
 		u8oxpchanges = 2;
 		u8oxpbitstate = 2;
 		u8pulselen &= 0x3F;
-#ifdef SIMULATION
-		printf("\n OXP ");
-#endif
 	}
 	u8oxpbitstate = ((u8oxpbitstate << 1) + (u8pulselen == E_100 ? 1 : 0)) & 7;
 	
 #ifdef SIMULATION
-	if (u8pulselen > E_100)printf(" %d ", u8pulselen);
+	if (u8pulselen > E_100)	// used for RDS readout clock
+		printf(" %d ", u8pulselen);
 #endif
 
 	if (++u8oxpchanges == 3) {
@@ -50,20 +45,30 @@ uint8_t handleOXP(uint8_t u8pulselen)
 			case 0: case 1:	// a "one" has been received
 							u8oxpchanges = 1;
 							u8oxprecbit = 1;
+							a32oxpnewdaten[u8oxpnrbits >> 5] |= (0x80000000 >> (u8oxpnrbits & 31));
 							u8oxpnrones++;
 							break;
 			case 5:			// a "flag" has been received
 							u8oxpchanges = 0;
 #ifdef SIMULATION
 							printf("<FLAG>");
-							if (u8oxpdataavail) {
-								printf(" CRC = %x, Bits %d", (u32oxpcrc & 0xFF), u8oxpnrbits);
-								printf("\n");
-							}
 #endif
-							u8oxpdataavail = FALSE;
-							u8oxpnrbits = 0;
+							if (u8oxpnrbits > 0) {
+//								printf(" CRC = %x, Bits %d", (u32oxpcrc & 0xFF), u8oxpnrbits);
+//								printf("\n");
+								if ((u32oxpcrc & 0xFF) == 0) {
+									a32oxprecdaten[0] = a32oxpnewdaten[0];
+									a32oxprecdaten[1] = a32oxpnewdaten[1];
+									a32oxprecdaten[2] = a32oxpnewdaten[2];
+									u8oxpexec = u8oxpnrbits;	// store for background handling
+								}
+							}
+							u8oxpnrbits = 0;					// clear for next packet
+							a32oxpnewdaten[0] = 0;
+							a32oxpnewdaten[1] = 0;
+							a32oxpnewdaten[2] = 0;
 							u32oxpcrc = 127;					// CRC start value
+							u8oxpanswering = 0;
 							return E_OXP_rec;
 			default:		// a "zero" has been received
 							u8oxpchanges = 2;
@@ -76,25 +81,48 @@ uint8_t handleOXP(uint8_t u8pulselen)
 							break;
 		}
 		// here we have one bit from rail signal
+		if (++u8oxpnrbits > 95) return E_idle;		// too many bits received without flag
+		if (u8oxpnrbits == 4) {						// check the first four bits
+			if ((a32oxpnewdaten[0] & 0xF0000000) == 0x30000000) {
+				// activate carrier
 #ifdef SIMULATION
-		printf("%d", u8oxprecbit);
+				printf(" ** RDS window ** ");
 #endif
-		u8oxpdataavail = TRUE;
-		u8oxpnrbits++;
+				u8oxpanswering = 1;
+			}
+		}
+							
 		// CRC calculation
 		u32oxpcrc = (u32oxpcrc << 1) + u8oxprecbit;
 		if (u32oxpcrc & 0x100) u32oxpcrc ^= 7;
-
 	}
 
-	return E_OXP_rec;
+	if (u8oxpanswering) return E_OXP_ans;
+	else return E_OXP_rec;
 }
 
 // entry from scheduling
 void executeOXP (void)
 {
-	if (u8oxpexec != TRUE)	return;
-	u8oxpexec = FALSE;
+	if (u8oxpexec == 0)	return;
+
+#ifdef SIMULATION
+	printf("\n OXP >");
+	for (uint8_t ui=0; ui<u8oxpexec ; ui++) 
+		printf("%d", (a32oxprecdaten[ui >> 5] >> (31-(ui & 31))) & 1);
+
+	// quick and dirty decoding only for test!
+	switch ((a32oxprecdaten[0] >> 17) & 0x3F) {
+		case 0x38:	printf(" READ ");	break;
+		case 0x39:	printf(" PROG ");	break;
+		case 0x3A:	printf(" SUCH ");	break;
+		case 0x3B:	printf(" NADR ");	break;
+		case 0x3C:	printf(" PING ");	break;
+		case 0x3D:	printf(" BAKE ");	break;
+	}
+#endif
+
+	u8oxpexec = 0;
 }
 
 
