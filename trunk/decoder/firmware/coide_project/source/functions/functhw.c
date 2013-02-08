@@ -13,6 +13,7 @@
 #include "M051series.h"
 #include "config.h"
 #include "system.h"
+#include "DrvGPIO.h"
 
 // definitions
 typedef union {
