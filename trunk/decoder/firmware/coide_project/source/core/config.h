@@ -22,4 +22,7 @@
 // mask for function outputs used for servo, pulse cycle set to 20ms
 #define SERVOOUTPUTS BIT7
 
+// indicate if RDS driver connected to P2.5 / PWM5
+#define ENABLE_RDS_FEEDBACK 1
+
 #endif

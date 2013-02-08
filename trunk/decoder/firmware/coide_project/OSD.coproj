@@ -131,22 +131,23 @@
     <File name="cmsis_boot" path="" type="2"/>
     <File name="cmsis_lib/Include/Driver/DrvPWM.h" path="cmsis_lib/Include/Driver/DrvPWM.h" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvADC.h" path="cmsis_lib/Include/Driver/DrvADC.h" type="1"/>
-    <File name="functions/functhw.c" path="source/functions/functhw.c" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
+    <File name="functions/functhw.c" path="source/functions/functhw.c" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis_lib/Include/System" path="" type="2"/>
     <File name="cmsis_core" path="" type="2"/>
     <File name="core/debug.c" path="source/core/debug.c" type="1"/>
-    <File name="cmsis_lib/Source" path="" type="2"/>
     <File name="core/cvdef.h" path="source/core/cvdef.h" type="1"/>
+    <File name="cmsis_lib/Source" path="" type="2"/>
     <File name="core/globals.h" path="source/core/globals.h" type="1"/>
     <File name="core" path="" type="2"/>
     <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="protocols/MMprotocol.c" path="source/protocols/MMprotocol.c" type="1"/>
     <File name="protocols/OXPprotocol.c" path="source/protocols/OXPprotocol.c" type="1"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvFMC.c" path="cmsis_lib/Source/Driver/DrvFMC.c" type="1"/>
     <File name="cmsis_lib/Source/Driver" path="" type="2"/>
+    <File name="cmsis_lib/Source/Driver/DrvFMC.c" path="cmsis_lib/Source/Driver/DrvFMC.c" type="1"/>
+    <File name="core/CVcontrol.c" path="source/core/CVcontrol.c" type="1"/>
     <File name="functions" path="" type="2"/>
     <File name="cmsis_lib/Source/Driver/DrvSYS.c" path="cmsis_lib/Source/Driver/DrvSYS.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvGPIO.h" path="cmsis_lib/Include/Driver/DrvGPIO.h" type="1"/>

@@ -16,6 +16,11 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+// prototypes for core functions
+void Init_CV_area (void);
+
+// prototypes for rail signal detection
+void Init_Rail_detect (void);
 
 // prototypes for functions
 void setPWMduty (uint32_t u32channel, uint8_t u8duty);

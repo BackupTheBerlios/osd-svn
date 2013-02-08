@@ -60,6 +60,9 @@ void SystemInit (void)
 	SYSCLK->u32CLKSEL1 = 0;
 	SYSCLK->u32CLKSEL2 = 0;
 
+	/* initialise configuration data from DataFlah */
+	Init_CV_area();
+
 	/* Select timer0 Operation mode as period mode */
 	TIMER0->TCSR.MODE = 1;
 

@@ -13,9 +13,6 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
-//#define uint8_t unsigned char
-//#define uint32_t unsigned int
-
 // enumerations
 enum E_ProtState { E_idle, E_MM_rec, E_DCC_rec, E_DCC_ans, E_OXP_rec, E_OXP_ans };
 enum E_Pulselength	{ E_25, E_50, E_100, E_200, E_400, E_900, E_LongPrea = 64, E_New = 128 };

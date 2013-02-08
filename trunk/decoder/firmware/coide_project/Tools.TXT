@@ -1,0 +1,6 @@
+used tools for production:
+
+- CooCox CoIDE	Version: 1.7.0
+
+- GNU Tools ARM Embedded 4.7 2012q4
+

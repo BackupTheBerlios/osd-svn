@@ -1,4 +1,26 @@
+/**************************************************************************//**
+ * @file cvdef.h
+ *
+ * @brief Definitionen für die CV-Registersruktur.
+ *
+ * @note not HW related
+*
+ * @copyright Das Copyright liegt bei den Autoren. Das Programm unterliegt den
+ *            Bedingungen der GNU General Public License 3 (GPL3).
+ *            Details zu Copyright und Lizenz siehe README.
+ *****************************************************************************/
 
+// for creation of default values this file could be included a second time
+
+#ifdef CVCREATEDEFAULT
+	#undef CVDEF_H
+#endif
+
+#ifndef CVDEF_H
+#define CVDEF_H
+
+
+// macro definitions for allocating enums and default array for CVs
 
 #ifdef CVCREATEDEFAULT
 	const unsigned char a8CV_factory[] = {
@@ -12,6 +34,8 @@
 	#define RESCV
 #endif
 
+
+    // used CVs, enum symbols, and factory default
 	// dient lediglich als Vorschlag, muss überarbeitet werden !
 
 	DEFCV(1, E_CV_Short_Addr, 3)		// CV 1
@@ -61,7 +85,10 @@
 	RESCV
 	RESCV
 	DEFCV(47, E_CV_Motoaddr_2,	14)		// CV 47
-	DEFCV(48, E_CV_Protokolle,	7)		// CV 48
+	RESCV
+	DEFCV(49, E_CV_ConfigData2,	1)		// CV 49
+	DEFCV(50, E_CV_Protokolle,	31)		// CV 50
 
 	};
 
+#endif
