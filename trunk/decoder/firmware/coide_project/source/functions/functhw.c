@@ -37,7 +37,7 @@ void TMR0_IRQHandler(void)
     static uint32_t u32fbufptr, u32fbufcntr;
     u_wb4_typ functionact;
 
-			outpw(P37_DOUT, 1);			// time measurement P3.7 ***********************
+			outpw(&P37_DOUT, 1);			// time measurement P3.7 ***********************
     TIMER0->u32TISR = 1;			    // clear request
 
     // set all port outputs
@@ -59,7 +59,7 @@ void TMR0_IRQHandler(void)
 			if (u32fbufcntr == 5) trigger10ms = 1;
 		}
 	}
-			outpw(P37_DOUT, 0);			// time measurement P3.7 ***********************
+			outpw(&P37_DOUT, 0);			// time measurement P3.7 ***********************
 }
 
 // set duty cycle of PWM

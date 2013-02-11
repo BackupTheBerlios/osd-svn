@@ -18,10 +18,10 @@
 
 /* Zähler-Register für Performance-Abschätzung */
 #ifdef MAIN
-extern uint32 debug_idlecount;
+extern volatile uint32 debug_idlecount;
 extern uint32 debug_metrics[16];
 #else
-uint32 debug_idlecount;
+volatile uint32 debug_idlecount;
 uint32 debug_metrics[16];
 #endif
 
