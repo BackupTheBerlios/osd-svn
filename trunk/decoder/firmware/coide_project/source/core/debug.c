@@ -40,9 +40,11 @@ void debug_idle ()
 
 void debug_fetchidle ()
 {
-	debug_metrics[current++] = debug_idlecount;
+	static uint32 u32last_idlecount;
+
+	debug_metrics[current++] = debug_idlecount - u32last_idlecount;
     if (current > 15) current = 0;
-	debug_idlecount = 0;
+    u32last_idlecount = debug_idlecount;
 }
 
 // interrupt for debug timer
