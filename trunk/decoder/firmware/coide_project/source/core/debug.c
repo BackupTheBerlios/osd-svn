@@ -31,20 +31,22 @@ void debug_init (bool use_timer)
 	   /* Enable count for Timer3 */
        TIMER3->TCSR.CEN = 1;
 	}
+
+	debug_idlecount = 0;
+	debug_reset = 0;
 }
 
 void debug_idle ()
 {
-	debug_idlecount++;
+	(debug_reset == 0) ? debug_idlecount++ : debug_fetchidle();
 }
 
 void debug_fetchidle ()
 {
-	static uint32 u32last_idlecount;
-
-	debug_metrics[current++] = debug_idlecount - u32last_idlecount;
+	debug_metrics[current++] = debug_idlecount;
     if (current > 15) current = 0;
-    u32last_idlecount = debug_idlecount;
+    debug_idlecount = 0;
+    debug_reset = 0;
 }
 
 // interrupt for debug timer
@@ -52,5 +54,5 @@ void TMR3_IRQHandler(void)
 {
     TIMER3->u32TISR = 1;				// clear request
 
-    debug_fetchidle();
+    debug_reset = 1;
 }

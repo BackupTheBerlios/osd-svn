@@ -19,9 +19,11 @@
 /* Zähler-Register für Performance-Abschätzung */
 #ifdef MAIN
 extern volatile uint32 debug_idlecount;
+extern uint32 debug_reset;
 extern uint32 debug_metrics[16];
 #else
 volatile uint32 debug_idlecount;
+uint32 debug_reset;
 uint32 debug_metrics[16];
 #endif
 
@@ -55,7 +57,7 @@ void debug_idle ();
  * sollte normalerweise verwendet werden, da es auch am wenigsten Auswirkungen
  * auf den restlichen Code hat.
  */
-#define DEBUG_IDLE debug_idlecount++;
+#define DEBUG_IDLE (debug_reset == 0) ? debug_idlecount++ : debug_fetchidle();
 
 /**
  * @brief Zyklischer Timer-Interrupt zum Abholen der Idle-Zähler.
