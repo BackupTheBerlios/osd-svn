@@ -95,8 +95,6 @@ void SystemInit (void)
 	ADC->u32ADCR = 0xD;
 	ADC->ADCR.ADST = 1;
 
-	// INT0 edge triggered rising and falling for rail signal detection
-	PORT3->IMD = 0;
-	PORT3->IEN = BIT2 + BIT18;
-	NVIC->ISER[0] = BIT2;
+	// enable rail signal detection via INT0
+	Init_Rail_detect();
 }

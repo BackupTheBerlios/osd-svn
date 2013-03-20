@@ -21,6 +21,7 @@ void Init_CV_area (void);
 
 // prototypes for rail signal detection
 void Init_Rail_detect (void);
+void handlechange(uint32_t u32duration);
 
 // prototypes for functions
 void setPWMduty (uint32_t u32channel, uint8_t u8duty);

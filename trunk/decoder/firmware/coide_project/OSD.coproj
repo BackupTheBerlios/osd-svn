@@ -128,20 +128,20 @@
   </Target>
   <Components path="./"/>
   <Files>
+    <File name="protocols/railsig.c" path="source/protocols/railsig.c" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
     <File name="cmsis_lib/Include/Driver/DrvPWM.h" path="cmsis_lib/Include/Driver/DrvPWM.h" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvADC.h" path="cmsis_lib/Include/Driver/DrvADC.h" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
     <File name="functions/functhw.c" path="source/functions/functhw.c" type="1"/>
+    <File name="cmsis_lib/Source/Driver/DrvPWM.c" path="cmsis_lib/Source/Driver/DrvPWM.c" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis_lib/Include/System" path="" type="2"/>
     <File name="cmsis_core" path="" type="2"/>
     <File name="core/debug.c" path="source/core/debug.c" type="1"/>
-    <File name="core/cvdef.h" path="source/core/cvdef.h" type="1"/>
     <File name="cmsis_lib/Source" path="" type="2"/>
+    <File name="core/cvdef.h" path="source/core/cvdef.h" type="1"/>
     <File name="core/globals.h" path="source/core/globals.h" type="1"/>
     <File name="core" path="" type="2"/>
-    <File name="syscalls/syscalls.c" path="syscalls/syscalls.c" type="1"/>
     <File name="protocols/MMprotocol.c" path="source/protocols/MMprotocol.c" type="1"/>
     <File name="protocols/OXPprotocol.c" path="source/protocols/OXPprotocol.c" type="1"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
@@ -172,18 +172,15 @@
     <File name="protocols/protocol.h" path="source/protocols/protocol.h" type="1"/>
     <File name="cmsis_lib/Include/Driver" path="" type="2"/>
     <File name="cmsis_lib/Include/Driver/DrvTimer.h" path="cmsis_lib/Include/Driver/DrvTimer.h" type="1"/>
-    <File name="syscalls" path="" type="2"/>
     <File name="cmsis_lib/Include/System/SysInfra.h" path="cmsis_lib/Include/System/SysInfra.h" type="1"/>
     <File name="protocols/Protselect.c" path="source/protocols/Protselect.c" type="1"/>
     <File name="core/config.h" path="source/core/config.h" type="1"/>
     <File name="core/system.c" path="source/core/system.c" type="1"/>
     <File name="cmsis_lib/Source/Driver/DrvSPI.c" path="cmsis_lib/Source/Driver/DrvSPI.c" type="1"/>
-    <File name="cmsis_lib/Source/Driver/DrvGPIO.c" path="cmsis_lib/Source/Driver/DrvGPIO.c" type="1"/>
     <File name="cmsis_boot/startup/startup_M051Series.c" path="cmsis_boot/startup/startup_M051Series.c" type="1"/>
     <File name="protocols/feedback.c" path="source/protocols/feedback.c" type="1"/>
     <File name="cmsis_lib/Include/Driver/DrvUART.h" path="cmsis_lib/Include/Driver/DrvUART.h" type="1"/>
     <File name="core/types.h" path="source/core/types.h" type="1"/>
-    <File name="cmsis_boot/system_M051Series.c" path="cmsis_boot/system_M051Series.c" type="1"/>
     <File name="core/debug.h" path="source/core/debug.h" type="1"/>
   </Files>
 </Project>
